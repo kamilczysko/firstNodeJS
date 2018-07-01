@@ -1,0 +1,90 @@
+<html>
+  <head>
+     <style>
+
+         table {
+             font-family: arial, sans-serif;
+             border-collapse: collapse;
+             width: 830px;
+         }
+
+         td, th {
+             border: 1px solid #dddddd;
+             text-align: center;
+             padding: 8px;
+         }
+
+         tr:nth-child(even) {
+             background-color: #dddddd;
+         }
+         th.del{
+           width:50px;
+           text-align:center;
+         }
+         .table{
+           margin:auto;
+           width:830px;
+           align:center;
+         }
+         h1{
+           text-align:center;
+         }
+         p{
+           text-align: center;
+         }
+
+         .a{
+           margin:auto;
+           width:400px;
+         }
+
+         .link {
+           background:none;
+           color:inherit;
+           border:none;
+           padding:0;
+           font: inherit;
+           cursor: pointer;
+         }
+      </style>
+  </head>
+
+  <body>
+<div>
+    <h1>Animals</h1>
+    <p>Add animal</p>
+    <div class = "a">
+    <form action='/add' method="post">
+      <input type="text" name="name" placeholder="name"/>
+      <input type="text" name="breed" placeholder="breed"/>
+      <button type="submit">Add</button>
+    </form>
+  </div>
+<div>
+    <div class="table">
+        <table style="width:100%">
+          <tr>
+            <th>Num</th>
+            <th>Name</th>
+            <th>Breed</th>
+            <th>Action</th>
+          </tr>
+    			<% for(let i = 0; i < animals.length; i++){%>
+            <tr>
+              <th><%=i%></th>
+              <th><%=animals[i].name%></th>
+              <th><%=animals[i].breed%></th>
+                <th class="del"><form action="/delete/" method="post">
+                  <input type="hidden" value="<%=animals[i]._id%>" name="id">
+                  <input type="submit" value="delete" class="link"/>
+                </form>
+              </th>
+            </tr>
+
+    			<%}%>
+      </table>
+    </div>
+
+  </body>
+
+</html>
